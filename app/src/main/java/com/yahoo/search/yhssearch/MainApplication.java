@@ -1,3 +1,5 @@
+// Copyright 2016, Yahoo Inc
+// Licensed under the terms of the BSD license. Please see LICENSE file associated with this project for terms.
 package com.yahoo.search.yhssearch;
 
 import android.app.Application;
