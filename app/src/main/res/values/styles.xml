@@ -1,8 +1,8 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" >
-        <!-- Customize your theme here. -->
+    <!-- Customize the TabLayout in Search activity-->
+    <style name="Yhssdk_TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/button_material_light</item>
     </style>
 
 </resources>

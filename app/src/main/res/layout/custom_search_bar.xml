@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yahoo.search.yhssearch.custom.CustomSearchBar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_search_bar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@android:color/black"
+    android:layout_weight="1">
+    <EditText
+        android:id="@+id/searchbox"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        android:background="@android:color/darker_gray"
+        android:hint="@string/search_hint"
+        android:textColorHint="@android:color/darker_gray"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:focusableInTouchMode="true"
+        android:inputType="textFilter|none"
+        android:imeOptions="flagNoExtractUi|actionDone"
+        android:layout_marginRight="-5dp"
+        android:textSize="20sp"
+        android:textCursorDrawable="@null"
+        android:textColor="@android:color/holo_orange_dark"/>
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="49dp"
+        android:padding="12dp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/yssdk_white"
+        android:src="@drawable/yssdk_cancel"/>
+</com.yahoo.search.yhssearch.custom.CustomSearchBar>

@@ -1,2 +1,2 @@
 configurations.create("default")
-artifacts.add("default", file('yhssdk-0.1.aar'))
+artifacts.add("default", file('yhssdk.aar'))
