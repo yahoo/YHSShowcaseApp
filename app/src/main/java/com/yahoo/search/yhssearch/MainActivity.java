@@ -24,6 +24,9 @@ public class MainActivity extends Activity implements ISearchResultClickListener
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CODE_SEARCH = 1001;
     public static final int LOCAL_HISTORY_NUM = 11;
+    public static final String YHS_HS_PART = "your_hs_part";
+    public static final String YHS_HS_IMP = "your_hs_imp";
+    public static final String YOUR_APP_ID = "your_app_id";
     SearchActivity.IntentBuilder mBuilder;
 
     @Override
@@ -67,7 +70,7 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
         @Override
         protected Object doInBackground(Object[] params) {
-            initSearchSDK(MainActivity.this, "searchexternaldemo", "1.0.0", "solo", "yhsm-solo_001");
+            initSearchSDK(YHS_HS_PART, YHS_HS_IMP);
             InitializeSearchBuilder();
             switch ((int)params[0]) {
                 case R.id.btn_search : launchYHSSearch(); break;
@@ -81,10 +84,9 @@ public class MainActivity extends Activity implements ISearchResultClickListener
         }
     }
 
-    private void initSearchSDK(Context context,
-                               String appName, String appVersion, String hspart, String hsimp) {
+    private void initSearchSDK( String hspart, String hsimp) {
         SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(hspart, hsimp);
-        builder.setAppId("bossValid");
+        builder.setAppId(YOUR_APP_ID);
     }
 
     private void InitializeSearchBuilder() {

@@ -3,11 +3,12 @@
 
 ### User Guide:
 
-Place the yhssdk aar file in the [yhssdk-release module](./yhssdk-release). Refer to [build.gradle](./yhssdk-release/build.gradle)
+The yhssdk aar file is in the [yhssdk-release module](./yhssdk-release) module.
 
 #### Initialize SDK:
   ```
    //Set Search settings.
+   Ask for your STRING_HSPART, STRING_HSIMP from Yahoo partner managers.
    SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(STRING_HSPART, STRING_HSIMP);
    builder.setAppId(STRING_APP_ID); // Optional setting to enable Trending Now (search buzz) in Search Assist tray.
 
