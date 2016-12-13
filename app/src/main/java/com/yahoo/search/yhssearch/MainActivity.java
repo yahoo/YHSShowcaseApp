@@ -3,7 +3,6 @@
 package com.yahoo.search.yhssearch;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 import com.yahoo.search.yhssdk.TrendingCategory;
 import com.yahoo.search.yhssdk.data.ImageSearchResult;
 import com.yahoo.search.yhssdk.data.VideoSearchResult;
@@ -24,40 +24,23 @@ public class MainActivity extends Activity implements ISearchResultClickListener
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_CODE_SEARCH = 1001;
     public static final int LOCAL_HISTORY_NUM = 11;
+    public static final String YHS_HS_PART = "your_hs_part";
+    public static final String YHS_HS_IMP = "your_hs_imp";
+    public static final String YOUR_APP_ID = "your_app_id";
     SearchActivity.IntentBuilder mBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setUpButtons();
-    }
-
-    private void setUpButtons() {
         final Button btnSearch = (Button) findViewById(R.id.btn_search);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new BackgroundTask().execute(btnSearch.getId());
+                new BackgroundTask().execute();
             }
         });
 
-        final Button btnNoImage = (Button) findViewById(R.id.btn_noimage);
-        btnNoImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new BackgroundTask().execute(btnNoImage.getId());
-            }
-        });
-
-        final Button btnNoVideo = (Button) findViewById(R.id.btn_novideo);
-        btnNoVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new BackgroundTask().execute(btnNoVideo.getId());
-            }
-        });
     }
 
     /**
@@ -67,24 +50,16 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
         @Override
         protected Object doInBackground(Object[] params) {
-            initSearchSDK(MainActivity.this, "searchexternaldemo", "1.0.0", "solo", "yhsm-solo_001");
+            initSearchSDK(YHS_HS_PART, YHS_HS_IMP);
             InitializeSearchBuilder();
-            switch ((int)params[0]) {
-                case R.id.btn_search : launchYHSSearch(); break;
-                case R.id.btn_noimage : mBuilder.enableImageSearch(false);
-                    launchYHSSearch(); break;
-                case R.id.btn_novideo : mBuilder.enableVideoSearch(false);
-                    launchYHSSearch(); break;
-                default: break;
-            }
+            launchYHSSearch();
             return null;
         }
     }
 
-    private void initSearchSDK(Context context,
-                               String appName, String appVersion, String hspart, String hsimp) {
+    private void initSearchSDK( String hspart, String hsimp) {
         SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(hspart, hsimp);
-        builder.setAppId("bossValid");
+        builder.setAppId(YOUR_APP_ID);
     }
 
     private void InitializeSearchBuilder() {
@@ -135,7 +110,7 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
     @Override
     public void onImageResultClicked(ImageSearchResult imageData) {
-
+        Log.d(TAG, "Search share data returned:"  + imageData.getUrl());
     }
 
     @Override

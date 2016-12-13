@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">YHSSearch</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="label_search">All verticals</string>
-    <string name="label_no_image">All but Image Vertical</string>
-    <string name="label_no_video">All but Video Vertical</string>
-</resources>
+    <string name="label_search">Launch Search</string>
+    </resources>
