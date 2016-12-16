@@ -1,6 +1,6 @@
 // Copyright 2016, Yahoo Inc
 // Licensed under the terms of the BSD license. Please see LICENSE file associated with this project for terms.
-package com.yahoo.search.yhssearch.custom;
+package com.yahoo.search.yhssdk.showcase.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yahoo.search.yhssdk.interfaces.ISearchViewHolder;
-import com.yahoo.search.yhssearch.R;
+import com.yahoo.search.yhssdk.showcase.R;
 
 /**
  * TODO: document your custom view class.

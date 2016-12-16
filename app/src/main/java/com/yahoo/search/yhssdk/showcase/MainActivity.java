@@ -1,6 +1,6 @@
 // Copyright 2016, Yahoo Inc
 // Licensed under the terms of the BSD license. Please see LICENSE file associated with this project for terms.
-package com.yahoo.search.yhssearch;
+package com.yahoo.search.yhssdk.showcase;
 
 import android.app.Activity;
 import android.content.Intent;

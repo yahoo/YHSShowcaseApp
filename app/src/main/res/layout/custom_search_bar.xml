@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yahoo.search.yhssearch.custom.CustomSearchBar xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yahoo.search.yhssdk.showcase.custom.CustomSearchBar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/custom_search_bar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -34,4 +34,4 @@
         android:visibility="gone"
         android:background="@color/yssdk_white"
         android:src="@drawable/yssdk_cancel"/>
-</com.yahoo.search.yhssearch.custom.CustomSearchBar>
+</com.yahoo.search.yhssdk.showcase.custom.CustomSearchBar>
