@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.yahoo.search.yhssdk.TrendingCategory;
 import com.yahoo.search.yhssdk.data.ImageSearchResult;
 import com.yahoo.search.yhssdk.data.VideoSearchResult;
 import com.yahoo.search.yhssdk.data.WebSearchResult;
@@ -65,11 +64,11 @@ public class MainActivity extends Activity implements ISearchResultClickListener
     private void InitializeSearchBuilder() {
         mBuilder = new SearchActivity.IntentBuilder();
         mBuilder.setQueryString("flower");//optional
-        mBuilder.setTrendingCategory(TrendingCategory.CELEBRITY);
         mBuilder.setNumberOfHistoryItems(LOCAL_HISTORY_NUM);
         mBuilder.showAppSuggestions(true);
         mBuilder.showContactSuggestions(true);
-//        mBuilder.setCustomSearchBar(R.layout.custom_search_bar);
+        mBuilder.setCustomSearchBar(R.layout.custom_search_bar);
+        mBuilder.setCustomSearchAssist(R.layout.custom_search_assist_item);
         mBuilder.setSearchResultClickListener(this);//If developers want to handle search result click.
     }
 
@@ -110,7 +109,9 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
     @Override
     public void onImageResultClicked(ImageSearchResult imageData) {
-        Log.d(TAG, "Search share data returned:"  + imageData.getUrl());
+        Log.d(TAG, "Image share photo url:"  + imageData.getPhotoUrl());
+        Log.d(TAG, "Image share thumbnail url:"  + imageData.getThumbUrl());
+        Log.d(TAG, "Image share title:"  + imageData.getTitle());
     }
 
     @Override

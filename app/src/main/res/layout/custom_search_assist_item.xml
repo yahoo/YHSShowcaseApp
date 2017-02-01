@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.view.Gravity"/>
+        <import type="android.view.ViewGroup"/>
+        <variable
+            name="assist"
+            type="com.yahoo.search.yhssdk.data.SearchAssistData"/>
+        <variable
+            name="handler"
+            type="com.yahoo.search.yhssdk.ui.view.SearchActivity"/>
+        <variable
+            name="customSearchAssist"
+            type="com.yahoo.search.yhssdk.showcase.custom.CustomSearchAssist"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:layout_height="19dp"
+            android:background="#FFEDEDF3"
+            android:visibility="@{assist.type == assist.SECTION_DIVIDER ? View.VISIBLE : View.GONE}"/>
+        <LinearLayout
+            android:id="@+id/yssdk_contact_item"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:visibility="@{assist.type == assist.SECTION_DIVIDER ? View.GONE : View.VISIBLE}">
+
+            <ImageView
+                android:id="@+id/yssdk_contact_icon"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:padding="4dp"
+                app:imageDrawable="@{assist}"/>
+            <TextView
+                android:text="@{assist.label}"
+                android:layout_width="0dp"
+                android:paddingLeft="14dp"
+                android:layout_weight="0.8"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:visibility="@{assist.type == assist.SECTION_DIVIDER ? View.GONE : View.VISIBLE}"
+                android:onClick="@{() -> handler.onClickAssistItem(assist)}"
+                android:gravity="@{assist.type == assist.SHOW_ALL_HISTORY || assist.type == assist.CLEAR_HISTORY ? Gravity.CENTER : Gravity.LEFT | Gravity.CENTER_VERTICAL}"/>
+
+            <ImageView
+                android:enabled="true"
+                android:visibility="@{assist.type == assist.SEARCH_SUGGEST ? View.VISIBLE : View.GONE}"
+                android:clickable="true"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:src="@drawable/ic_query_builder_black_24px"
+                android:onClick="@{() -> handler.onAppendSuggestionItem(assist.label)}"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
