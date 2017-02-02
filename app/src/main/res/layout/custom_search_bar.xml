@@ -6,14 +6,14 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:layout_gravity="center"
-    android:background="@android:color/black"
+    android:background="@android:color/background_light"
     android:layout_weight="1">
     <EditText
         android:id="@+id/searchbox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="0.9"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/background_light"
         android:hint="@string/search_hint"
         android:textColorHint="@android:color/darker_gray"
         android:maxLines="1"
@@ -32,6 +32,6 @@
         android:padding="12dp"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:background="@color/yssdk_white"
-        android:src="@drawable/yssdk_cancel"/>
+        android:background="@android:color/background_light"
+        android:src="@drawable/ic_close_black_24px"/>
 </com.yahoo.search.yhssdk.showcase.custom.CustomSearchBar>

@@ -11,9 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.yahoo.search.yhssdk.data.ImageSearchResult;
-import com.yahoo.search.yhssdk.data.VideoSearchResult;
-import com.yahoo.search.yhssdk.data.WebSearchResult;
+import com.yahoo.search.yhssdk.data.share.ImageSearchResult;
+import com.yahoo.search.yhssdk.data.share.VideoSearchResult;
+import com.yahoo.search.yhssdk.data.share.WebSearchResult;
 import com.yahoo.search.yhssdk.interfaces.ISearchResultClickListener;
 import com.yahoo.search.yhssdk.settings.SearchSDKSettings;
 import com.yahoo.search.yhssdk.ui.view.SearchActivity;
@@ -78,6 +78,8 @@ public class MainActivity extends Activity implements ISearchResultClickListener
          */
         //mBuilder.enableImageSearch(false);
         //mBuilder.enableVideoSearch(false);
+        //Local vertical is not there yet. Please reach out to Yahoo manager for Local Search support.
+        //mBuilder.enableLocalSearch(true);
         Intent i = mBuilder.buildIntent(this);
         startActivityForResult(i, REQUEST_CODE_SEARCH);
     }

@@ -8,7 +8,6 @@ The yhssdk aar file is in the [yhssdk-release module](./yhssdk-release) module.
 #### Initialize SDK:
   ```
    //Set Search settings.
-   Ask for your STRING_HSPART, STRING_HSIMP from Yahoo partner managers.
    SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(STRING_HSPART, STRING_HSIMP);
    builder.setAppId(STRING_APP_ID); // Optional setting to enable Trending Now (search buzz) in Search Assist tray.
    //builder.setCountry("us");//ISO 3166 alpha-2 country code. Optional setting for regional search.
