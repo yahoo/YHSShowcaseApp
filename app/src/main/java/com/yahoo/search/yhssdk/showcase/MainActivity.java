@@ -1,6 +1,6 @@
 // Copyright 2016, Yahoo Inc
 // Licensed under the terms of the BSD license. Please see LICENSE file associated with this project for terms.
-package com.yahoo.search.yhssearch;
+package com.yahoo.search.yhssdk.showcase;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,10 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.yahoo.search.yhssdk.TrendingCategory;
-import com.yahoo.search.yhssdk.data.ImageSearchResult;
-import com.yahoo.search.yhssdk.data.VideoSearchResult;
-import com.yahoo.search.yhssdk.data.WebSearchResult;
+import com.yahoo.search.yhssdk.data.share.ImageSearchResult;
+import com.yahoo.search.yhssdk.data.share.VideoSearchResult;
+import com.yahoo.search.yhssdk.data.share.WebSearchResult;
 import com.yahoo.search.yhssdk.interfaces.ISearchResultClickListener;
 import com.yahoo.search.yhssdk.settings.SearchSDKSettings;
 import com.yahoo.search.yhssdk.ui.view.SearchActivity;
@@ -65,11 +64,11 @@ public class MainActivity extends Activity implements ISearchResultClickListener
     private void InitializeSearchBuilder() {
         mBuilder = new SearchActivity.IntentBuilder();
         mBuilder.setQueryString("flower");//optional
-        mBuilder.setTrendingCategory(TrendingCategory.CELEBRITY);
         mBuilder.setNumberOfHistoryItems(LOCAL_HISTORY_NUM);
         mBuilder.showAppSuggestions(true);
         mBuilder.showContactSuggestions(true);
-//        mBuilder.setCustomSearchBar(R.layout.custom_search_bar);
+        mBuilder.setCustomSearchBar(R.layout.custom_search_bar);
+        mBuilder.setCustomSearchAssist(R.layout.custom_search_assist_item);
         mBuilder.setSearchResultClickListener(this);//If developers want to handle search result click.
     }
 
@@ -79,6 +78,8 @@ public class MainActivity extends Activity implements ISearchResultClickListener
          */
         //mBuilder.enableImageSearch(false);
         //mBuilder.enableVideoSearch(false);
+        //Local vertical is not there yet. Please reach out to Yahoo manager for Local Search support.
+        //mBuilder.enableLocalSearch(true);
         Intent i = mBuilder.buildIntent(this);
         startActivityForResult(i, REQUEST_CODE_SEARCH);
     }
@@ -110,7 +111,9 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
     @Override
     public void onImageResultClicked(ImageSearchResult imageData) {
-        Log.d(TAG, "Search share data returned:"  + imageData.getUrl());
+        Log.d(TAG, "Image share photo url:"  + imageData.getPhotoUrl());
+        Log.d(TAG, "Image share thumbnail url:"  + imageData.getThumbUrl());
+        Log.d(TAG, "Image share title:"  + imageData.getTitle());
     }
 
     @Override
