@@ -3,30 +3,35 @@
 
 ### User Guide:
 
-The yhssdk aar file is in the [yhssdk-release module](./yhssdk-release) module.
+Add following dependency to application's build.gradle file.
+   ```
+     compile ('com.yahoo.search:yhssdk:0.4.3')
+   ```
+0.4.3 is the latest stable version.
 
-#### Initialize SDK:
   ```
    //Set Search settings.
+   // This initialization can be done in UI thread or background thread. It is meant for global settings and ideally doing it in Application class is a good practice.
    SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(STRING_HSPART, STRING_HSIMP);
    builder.setAppId(STRING_APP_ID); // Optional setting to enable Trending Now (search buzz) in Search Assist tray.
-   //builder.setCountry("us");//ISO 3166 alpha-2 country code. Optional setting for regional search.
    static  final int REQUEST_CODE_SEARCH = 1001;
    static final int LOCAL_HISTORY_NUM = 11;
 
    //Setup SearchActivity Builder.
         SearchActivity.IntentBuilder builder = new SearchActivity.IntentBuilder();
         //builder.setQueryString("flower"); //Optional pre-query.
-        builder.setTrendingCategory(TrendingCategory.CELEBRITY);
         builder.setNumberOfHistoryItems(LOCAL_HISTORY_NUM);
         builder.showAppSuggestions(true);
         builder.showContactSuggestions(true);
         //builder.setSearchResultClickListener(this);//If developers want to handle search result click.
+        //builder.enableWebPreview(false); // disable preview activity when search results are clicked.
+        //mBuilder.launchWithSuggestions(true);//If SA should be shown when the search Activity is launched.
         /**
          * To disable image/video verticals. Web is mandatory for now.
          */
         //builder.enableImageSearch(false);
         //builder.enableVideoSearch(false);
+        //builder.enableLocalSearch(false);
         Intent i = builder.buildIntent(this);
         startActivityForResult(i, REQUEST_CODE_SEARCH);
   ```
@@ -83,8 +88,34 @@ Below are the two click handlers that needs to be registered in layout.
 *onClickAssistItem* - callback for the click of search assist item.
 
 ##### International Support:
-The default Search results market is US. SDK will not auto detect region so it is the responsibility of the app to set the region using the SearchSDKSettings.Builder with corresponding ISO 3166 alpha-2 country code.
+SDK picks up the locale from the System Language Settings but it can be overridden as below. The fallback locale is en_US if the override locale (or System locale) is not supported by SDK.
+Please note that override feature is available only on API 17 and above.
    ```
-     SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(STRING_HSPART, STRING_HSIMP);
-   builder.setCountry("us");
+   SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(STRING_HSPART, STRING_HSIMP);
+   builder.setLocale(new Locale("de", "DE"));;
    ```
+Below are the list of locales supported by SDK.
+
+| Countries | Countries |
+| --------- | ----------|
+Argentina (Spanish) | New Zealand (English)
+Australia (English) | Norway (Norwegian)
+Austria (German) | Peru (Spanish)
+Brazil (Portuguese) | Poland (Polish)
+Canada (English) | Philippines (English)
+Canada (French) | Romania (Romanian)
+Denmark (Danish) | Russia (Russian)
+Colombia (Spanish) | Singapore (English)
+Finland (Finnish) | Spain (Spanish)
+Chile (Spanish) | Sweden (Swedish)
+France (French) | Switzerland (French)
+Germany (German) | Switzerland (German)
+Greece (Greek) | Switzerland (Italian)
+Hong Kong (Simplified Chinese) | Taiwan (Traditional Chinese)
+India (English) | Turkey (Turkish)
+Indonesia (English) | Thailand (Thai)
+Italy (Italian) | Venezuela (Spanish)
+Maktoob (English) | Vietnam (Vietnamese)
+Malaysia (English) | United Kingdom & Ireland (English)
+Mexico (Spanish) | United States (English)
+Netherlands (Dutch) | United States (Spanish) - Espanol (E1)

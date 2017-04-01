@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements ISearchResultClickListener
 
         @Override
         protected Object doInBackground(Object[] params) {
-            initSearchSDK(YHS_HS_PART, YHS_HS_IMP);
+//            initSearchSDK(YHS_HS_PART, YHS_HS_IMP);
             InitializeSearchBuilder();
             launchYHSSearch();
             return null;
@@ -70,6 +70,7 @@ public class MainActivity extends Activity implements ISearchResultClickListener
         mBuilder.setCustomSearchBar(R.layout.custom_search_bar);
         mBuilder.setCustomSearchAssist(R.layout.custom_search_assist_item);
         mBuilder.setSearchResultClickListener(this);//If developers want to handle search result click.
+//        mBuilder.launchWithSuggestions(true);//If SA should be shown when the search Activity is launched.
     }
 
     private void launchYHSSearch() {
