@@ -7,6 +7,8 @@ import android.content.Context;
 
 import com.yahoo.search.yhssdk.settings.SearchSDKSettings;
 
+import java.util.Locale;
+
 
 public class MainApplication extends Application {
     public static final String TAG = MainApplication.class.getSimpleName();
@@ -19,7 +21,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //initSearchSDK(this, APP_NAME, APP_VERSION, APP_HSPART, APP_HSIMP);
+        initSearchSDK(this, APP_NAME, APP_VERSION, APP_HSPART, APP_HSIMP);
     }
 
     /**
@@ -34,5 +36,6 @@ public class MainApplication extends Application {
             String appName, String appVersion, String hspart, String hsimp) {
         SearchSDKSettings.Builder builder = new SearchSDKSettings.Builder(hspart, hsimp);
         builder.setAppId(APP_ID);
+//        builder.setLocale(new Locale("en", "US")); to override Locale.
     }
 }
